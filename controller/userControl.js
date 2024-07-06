@@ -1,5 +1,6 @@
-const { error } = require('console');
 const users = require('../models/user.js');
+const {setUser} = require('../service/auth.js');
+
 
 async function handleuserSignup(req,res){
     const {email,password,fullname} = req.body;
@@ -8,15 +9,16 @@ async function handleuserSignup(req,res){
         if(exsitinguser){
             return res.status(400).render('signup',{error:'Email already exits'})
         }
-        await users.create({
+        const newUser = await users.create({
             fullname:fullname,
             email,
             password
         });
-        return res.render('home',{
-            usersname:fullname,
-            role:true
-        }) 
+
+        const token = setUser(newUser);
+        res.cookie('token',token);
+
+        return res.redirect('/');
     }catch(error){
         console.error('Error during user sign-up:', error);
         return res.status(500).send('Internal server error');
@@ -28,10 +30,10 @@ async function handleuserSignin(req,res){
     try{
         const user = await users.authenticatePassword(email,password);
         if(user.error) return res.status(400).render('signin',{error:user.error});
-        return res.render('home',{
-                username:user.fullname,
-                role:user.role
-            });
+
+        const token = setUser(user);
+        res.cookie('token',token);
+        return res.redirect('/');
     }catch(error){
         console.error('Error during user sign-up:', error);
         return res.status(500).send('Internal server error');
@@ -39,7 +41,8 @@ async function handleuserSignin(req,res){
 }
 function handleuserLogout(req,res){
     try{
-        return res.render('signin');
+        res.clearCookie('token');
+        return res.redirect('/signin');
     }catch(error){
         console.error('Error during logout:', error);
         return res.status(500).send('Internal server error');

@@ -8,7 +8,11 @@ post /logout - logout page [Done :)]
 post /signup - signup page [Done :)]
 post /login - login page [Done :)]
 
-
 password hashing [Done :)]
 username functionality [Done :)] (add <%= username %> in navbar page)
+
+jwt token [Done :)]
+authentication [Done :)]
+authorization 
+
 

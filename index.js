@@ -3,6 +3,8 @@ const app = express();
 const port = 3000;
 
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const {authenticatCookie} = require('./middleware/auth.js');
 
 const {connectdb} = require('./connection');
 
@@ -15,6 +17,8 @@ app.set('view engine', 'ejs');
 app.set('views',path.resolve('./views'));
 
 app.use(express.urlencoded({extended:false}));
+app.use(cookieParser());
+app.use(authenticatCookie('token'))
 
 app.use('/',staticRoute);
 app.use('/user',userRoute);
