@@ -13,7 +13,10 @@ async function handleuserSignup(req,res){
             email,
             password
         });
-        return res.redirect('/'); 
+        return res.render('home',{
+            usersname:fullname,
+            role:true
+        }) 
     }catch(error){
         console.error('Error during user sign-up:', error);
         return res.status(500).send('Internal server error');
@@ -26,7 +29,8 @@ async function handleuserSignin(req,res){
         const user = await users.authenticatePassword(email,password);
         if(user.error) return res.status(400).render('signin',{error:user.error});
         return res.render('home',{
-                username:user.fullname
+                username:user.fullname,
+                role:user.role
             });
     }catch(error){
         console.error('Error during user sign-up:', error);
