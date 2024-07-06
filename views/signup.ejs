@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %> <!-- Include the head partial -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="icon" href="/assets/_226deb92-9e15-4948-99e4-a9e931bcb907.png" type="image/x-icon"> <!-- favicon -->
+    <!-- Animate.css for animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #2b3035;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            margin-top: 2vh;
+            background-color: #fff;
+            max-width: 700px;
+            max-height: 475px;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease;
+            font-size: 15px;
+        }
+
+        #head {
+            font-size: 30px;
+            font-weight: 450;
+            color: #0056b3;
+            margin-bottom: -5px;
+        }
+
+        .form-group label {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: lighter;
+            font-size: medium;
+            padding: 8px;
+        }
+
+        .form-control {
+            margin-bottom: 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-primary {
+            width: 100%;
+            border-radius: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                background-color: #2b3035;
+                height: 100vh;
+                margin: 0;
+                position: static;
+                transform: none;
+                top: auto;
+                left: auto;
+            }
+
+            .container {
+                margin-top: 2vh;
+                background-color: #fff;
+                max-width: 90%; /* Adjust width for small screens */
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                animation: fadeInUp 1s ease;
+            }
+
+            .form-group label {
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                font-weight: lighter;
+                font-size: medium;
+            }
+
+            .form-control {
+                margin-bottom: 1rem;
+                border-radius: 20px;
+                transition: all 0.3s ease;
+            }
+        }
+    </style>
+</head>
+<body>  
+    <%- include('./partials/navbar.ejs') %>
+    <div class="container animate__animated animate__fadeInUp">
+        <h1 class="text-center mb-4" id="head">Sign Up</h1>
+        <% if (locals.error) { %>
+            <p style="color: red; margin-left: 6px;"><%= error %></p>
+        <% } %>
+        <form action="/user/register" method="post">
+            <div class="form-group">
+                <label for="name">Username:</label>
+                <input type="text" name="fullname" class="form-control" placeholder="Your Username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <input type="submit" class="btn btn-primary" id="btn-submit" value="Sign Up">
+        </form>
+        <div class="text-center mt-3">
+            <p>Already have an account? <a onclick="window.location.href='/signin'" href="#">Sign In</a></p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <%- include('./partials/scripts.ejs') %>
+</body>
+</html>

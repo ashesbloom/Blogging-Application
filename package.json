@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.5"
+  },
+  "name": "blogging-application",
+  "version": "1.0.0",
+  "description": "index runner",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashesbloom/Blogging-Application.git"
+  },
+  "author": "ashesbloom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashesbloom/Blogging-Application/issues"
+  },
+  "homepage": "https://github.com/ashesbloom/Blogging-Application#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
