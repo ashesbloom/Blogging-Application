@@ -34,14 +34,18 @@
                       <p class="card-body">
                         <% if (blog.readingTime < 15) { %>
                           <span class="reading-time" style="color:green;">Short Read</span>
-                          <span class="reading-time"> approx <%= blog.readingTime %> min read</span>
+                          <span class="reading-time">: approx <%= blog.readingTime %> min </span>
                         <% } else { %> 
                           <span class="reading-time" style="color: rgb(227, 155, 55);">Long Read</span>
-                          <span class="reading-time"> <%= blog.readingTime-2 %> - <%= blog.readingTime %> min read</span>
+                          <span class="reading-time">: <%= blog.readingTime-2 %> - <%= blog.readingTime %> min read</span>
                         <% } %>
                       </p>
-                      <p class="footer">Written by <span class="by-name"><%= blog.userName %></span> on <span class="date"><%= blog.createdAt %></span></p>
+                      <p class="footer">Written by <span class="by-name"><%= blog.userName %></span> on <span class="date" style="font-weight: bold;"><%= formatDate(blog.createdAt) %></span></p>
                     </div>
+                    <% function formatDate(date) { %>
+                        <% const formattedDate = new Date(date).toLocaleDateString('en-GB'); %>
+                        <%= formattedDate %>
+                    <% } %>
                 <% }) %>
             </div>
         </div>
