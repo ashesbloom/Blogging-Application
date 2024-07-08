@@ -119,6 +119,12 @@
     <%- include('./partials/navbar.ejs') %> <!-- Include the navbar partial -->
     <div class="container animate__animated animate__fadeInUp">
         <h1 class="text-center mb-4" id="head">Sign In</h1>
+        <% if (locals.registred) { %>
+            <hr>
+            <p style="color: rgb(255, 128, 0); font-size:medium; margin-top: 10px; text-align: center;"><%= registred %></p>
+            <a href="#" style="text-decoration: none;"><p style=" font-size:x-small; text-align: center;" onclick="window.location.href='/' ">Go to homepage ></p></a>
+            <hr>
+        <% } %>
         <form action="/user/login" method="post">
             <div class="form-group">
                 <label for="email">Email:</label>

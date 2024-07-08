@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+    <title>Blogs!</title>
+  </head>
+  <body>
+    <%- include('./partials/navbar.ejs') %>
+    <div class="main-container">
+      <div class="lside-container">
+        <%- include('./partials/leftsideBar.ejs') %>
+      </div>
+      <div class="body-container">
+            <h1 class="blog-tit"><%= blog.title %></h1>
+            <hr>
+            <% if (blog.attachment) { %>
+                <div class="blog-image">
+                    <img src="<%= '/'+blog.attachment %>">
+                </div>
+            <% } %>
+            <div class="blog-body">
+                <%- blog.body %>
+            </div>
+        </div>
+      <div class="rside-container">
+        <%- include('./partials/rightsideBar.ejs') %>
+      </div>
+      <%- include('./partials/scripts.ejs') %>
+    </div>
+  </body>
+</html>

@@ -25,7 +25,7 @@
             background-color: #fff;
             max-width: 800px;
             width: 100%;
-            max-height: 475px;
+            max-height:550px;
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -119,6 +119,10 @@
     <%- include('./partials/navbar.ejs') %>
     <div class="container animate__animated animate__fadeInUp">
         <h1 class="text-center mb-4" id="head">Sign Up</h1>
+        <% if (locals.registred) { %>
+            <p style="color: rgb(255, 128, 0); font-size:medium; text-align: center;"><%= registred %></p>
+            <a href="#" style="text-decoration: none;"><p style=" font-size:x-small; text-align: center;" onclick="window.location.href='/' ">Go to homepage ></p></a>
+        <% } %>
         <% if (locals.error) { %>
             <p style="color: red; margin-left: 6px;"><%= error %></p>
         <% } %>

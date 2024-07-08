@@ -109,7 +109,20 @@ body.dark-mode:not([class*=" "]) {
   filter: invert(100%);
   transition: 0.4s;
 }
+.right-bar-opt-2.dark-mode{
+  background-color: #393939;
+  box-shadow: -4px -4px 6px #212121ab; 
+  transition: 0.4s;
+}
 
+.right-bar-opt-2.dark-mode img{
+  filter: invert(100%);
+  transition: 0.4s;
+}
+
+.right-bar-opt-2.dark-mode .editBtn::before{
+    background-color: rgb(216, 216, 216);
+}
 
 .mb-3 .form-control.dark-mode{
   background-color: #343434;
@@ -140,4 +153,10 @@ body.dark-mode:not([class*=" "]) {
 }
 .card.dark-mode p{
   color: rgb(184, 184, 184);
+}
+
+.body-container.dark-mode .blog-body{
+  border-color: #4b4b4b;
+  background-color: #393939;
+  color: #e0e0e0;
 }

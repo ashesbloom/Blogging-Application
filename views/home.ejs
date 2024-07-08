@@ -15,7 +15,7 @@
             <hr>
             <div class="allcards">
                 <% blogs.forEach(blog => { %>
-                    <div class="card">
+                    <div class="card" onclick="window.location.href='/blog/<%=blog._id%>'">
                       <div class="card-image">
                         <% if (blog.attachment) { %>
                           <img src="<%= blog.attachment %>">
@@ -32,7 +32,7 @@
                       </div>
                       <span class="card-title"><%= blog.title %></span>
                       <p class="card-body">
-                        <% if (blog.readingTime < 15) { %>
+                        <% if (blog.readingTime < 10) { %>
                           <span class="reading-time" style="color:green;">Short Read</span>
                           <span class="reading-time">: approx <%= blog.readingTime %> min </span>
                         <% } else { %> 
