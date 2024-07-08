@@ -17,6 +17,13 @@ const blogSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref:'user'
     },
+    readingTime:{
+        type:String
+    },
+    userName:{
+        type: String,
+        ref:'user'
+    }
 },{timestamps:true});
 
 const blogs = model('blog',blogSchema);

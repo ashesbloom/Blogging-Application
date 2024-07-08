@@ -1,31 +1,32 @@
-<!-- this the the code which is comman in every page of the application -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"onclick="window.location.href='/'">Blogs!</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <% if(locals.role){ %>
+  <!-- this the code which is common in every page of the application -->
+<div class="headpage">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" onclick="window.location.href='/'">Blogs!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <% if(locals.role){ %>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#" onclick="window.location.href='/'">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Add Blog</a>
+                <a class="nav-link" href="#" onclick="window.location.href='/add-new'">Add Blog</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= username %></a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Change Profile</a></li>
                   <li>
-                      <form action="/user/logout" method="post">
-                          <button type="submit" class="dropdown-item">Logout</button>
-                      </form>
+                    <form action="/user/logout" method="post">
+                      <button type="submit" class="dropdown-item">Logout</button>
+                    </form>
                   </li>
                 </ul>
               </li>
-          <% } else{ %>  
+            <% } else { %>  
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#" onclick="window.location.href='/'">Home</a>
               </li>
@@ -35,8 +36,9 @@
               <li class="nav-item">
                 <a class="nav-link" onclick="window.location.href='/signin'" href="#">SignIn</a>
               </li>
-         <% } %>
-        </ul>
+            <% } %>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+</div>

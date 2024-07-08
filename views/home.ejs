@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <%- include('./partials/head.ejs') %>
     <title>Blogs!</title>
-</head>
-<body>
+  </head>
+  <body>
     <%- include('./partials/navbar.ejs') %>
-    <%- include('./partials/scripts.ejs') %>
-</body>
+    <div class="main-container">
+      <div class="lside-container">
+        <%- include('./partials/leftsideBar.ejs') %>
+      </div>
+      <div class="body-container">
+            <h1>Blog goes here!</h1>
+            <hr>
+            <div class="allcards">
+                <% blogs.forEach(blog => { %>
+                    <div class="card">
+                      <div class="card-image">
+                        <% if (blog.attachment) { %>
+                          <img src="<%= blog.attachment %>">
+                        <% } else { %>
+                          <hr>
+                          <hr>
+                          <hr>
+                          <hr>
+                          <hr>
+                          <hr>
+                          <hr>
+                          <hr>
+                        <% } %>
+                      </div>
+                      <span class="card-title"><%= blog.title %></span>
+                      <p class="card-body">
+                        <% if (blog.readingTime < 15) { %>
+                          <span class="reading-time" style="color:green;">Short Read</span>
+                          <span class="reading-time"> approx <%= blog.readingTime %> min read</span>
+                        <% } else { %> 
+                          <span class="reading-time" style="color: rgb(227, 155, 55);">Long Read</span>
+                          <span class="reading-time"> <%= blog.readingTime-2 %> - <%= blog.readingTime %> min read</span>
+                        <% } %>
+                      </p>
+                      <p class="footer">Written by <span class="by-name"><%= blog.userName %></span> on <span class="date"><%= blog.createdAt %></span></p>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+      <div class="rside-container">
+        <%- include('./partials/rightsideBar.ejs') %>
+      </div>
+      <%- include('./partials/scripts.ejs') %>
+    </div>
+  </body>
 </html>

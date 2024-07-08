@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>Blogs!</title>
+</head>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+    <div class="main-container">
+        <div class="lside-container">
+            <%- include('./partials/leftsideBar.ejs') %>
+        </div>
+        <div class="body-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title-addpage">Throw-in your mind here!</h2>
+                        <hr>
+                        <form action="/blog/add-new" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="content" class="form-label">Content</label>
+                                <textarea class="form-control" id="content" name="body" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="attachment" class="form-label">Attachment</label>
+                                <input type="file" class="form-control" id="attachment" name="attachment">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rside-container">
+            <%- include('./partials/rightsideBar.ejs') %>
+        </div>   
+        <%- include('./partials/scripts.ejs') %>
+    </div>
+</body>
+</html>
