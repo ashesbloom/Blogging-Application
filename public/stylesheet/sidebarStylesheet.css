@@ -10,7 +10,7 @@
 .right-bar {
   position:fixed;
   top: 50%;
-  right: 1.5vh;
+  right: 1.9vh;
   width: 60px;
   height: 100px;
   transform: translateY(-50%);
@@ -40,7 +40,7 @@
 .social-bar {
   position: fixed;
   top: 50%;
-  left: 1.5vh;
+  left: 1.7vh;
   width: 50px;
   height: 205px;
   transform: translateY(-50%);
@@ -78,22 +78,22 @@
 }
 
 
-.right-bar-opt{
-  position:fixed;
-  top: 42%;
-  right: 1.5vh;
+.right-bar-opt {
+  position: fixed;  /* Maintain fixed positioning for consistent placement */
+  right:1.6vh;      /* Use vw unit for responsive right edge positioning */
+  top: 42.5%;
+  transform: translateY(-50%); /* Offset vertically by half its height */
   width: 60px;
   height: 105px;
-  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 17px;
   box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff; 
+  background-color: #ffffff;
   animation: slideInright 0.35s ease-in-out;
-
 }
+
 
 .right-bar-opt:hover::after {
   content: "Go Back!";
@@ -184,22 +184,23 @@
   transform-origin: right;
 }
 
-.right-bar-opt-2{
-  position:fixed;
-  top: 60%;
-  right: 1.5vh;
-  width: 60px;
-  height: 82px;
+.right-bar-opt-2 {
+  position: fixed;
+  right:1.6vh;
+  top:59%; 
   transform: translateY(-50%);
+  width:3.7em; 
+  height:5.8em;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 17px;
   box-shadow: 0.1px 0.1px 3px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff; 
+  background-color: #ffffff;
   animation: slideInright 0.35s ease-in-out;
-
 }
+
+
 
 .right-bar-opt-2:hover::after {
   content: "edit your post";
@@ -227,7 +228,7 @@
 }
 
 .social-icon-2 {
-  margin: 38px 0;
+  margin: 47px 0;
 }
 
 

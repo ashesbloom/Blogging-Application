@@ -6,7 +6,7 @@ router.get('/',async (req,res)=>{
     const allblogs = await blogs.find({}).sort({ createdAt: -1 })
     const userDestination = 'homepage'
     if(!req.user) return res.render('home',{
-        user:null,
+        user:false,
         blogs:allblogs,
         path: userDestination
     })
@@ -24,7 +24,7 @@ router.get('/',async (req,res)=>{
 router.get('/add-new',async(req,res)=>{
     const userDestination = 'addpage'
     if(!req.user) return res.render('home',{
-        user:null,
+        user:false,
         path: userDestination
     })
     const currentUser = req.user
@@ -42,7 +42,7 @@ router.get('/edit/:id',async(req,res)=>{
     const blog = await blogs.findOne({_id:blogId});
     const userDestination = 'addpage'
     if(!req.user) return res.render('editBlog',{
-        user:null,
+        user:false,
         path: userDestination
     })
     const currentUser = req.user

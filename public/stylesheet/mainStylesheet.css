@@ -221,7 +221,7 @@ body {
 .btn-96 :before,
 .btn-96:after,
 .btn-96:before {
-  border-radius: 17px;
+  border-radius: 12px;
   box-sizing: border-box;
 }
 
@@ -386,26 +386,46 @@ body {
 
 
 }
+
 .button {
-  position: relative;
-  width: 110px;
-  height: 40px;
+  --main-focus: #2d8cf0;
+  --font-color: #f9f9f9;
+  --bg-color-sub: #ff0000;
+  --bg-color: #e02e2e;
+  --main-color: #eb3b3b;
+
+  /* Use viewport units for responsive positioning */
+  position: absolute;  /* Maintain fixed positioning for consistent placement */
+  bottom: 1.5vh;       
+  right: 20vw;        /* Set right position from the viewport right */
+  width: 112px;
+  height: 43px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  border: 1px solid #cc0000;
-  border-radius: 15px;
-  background-color: #e50000;
+  justify-items: center;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
   overflow: hidden;
 }
-
+.button__text{
+  position: absolute;  /* Maintain fixed positioning for consistent placement */
+  bottom: 0vh; 
+  right: 7px;      
+  width: 120px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
 .button, .button__icon, .button__text {
   transition: all 0.3s;
 }
 
 .button .button__text {
-  transform: translateX(35px);
-  color: #fff;
+  transform: translateX(33px);
+  color: var(--font-color);
   font-weight: 600;
 }
 
@@ -413,8 +433,8 @@ body {
   position: absolute;
   transform: translateX(109px);
   height: 100%;
-  width: 10px;
-  background-color: #cc0000;
+  width: 20px;
+  background-color: var(--bg-color-sub);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -422,10 +442,12 @@ body {
 
 .button .svg {
   width: 20px;
+  margin-right: 36px;
+  fill: var(--main-color);
 }
 
 .button:hover {
-  background: #cc0000;
+  background: var(--bg-color);
 }
 
 .button:hover .button__text {
@@ -437,13 +459,7 @@ body {
   transform: translateX(0);
 }
 
-.button:active .button__icon {
-  background-color: #b20000;
-}
-
 .button:active {
-  border: 1px solid #b20000;
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
 }
-
-
-
