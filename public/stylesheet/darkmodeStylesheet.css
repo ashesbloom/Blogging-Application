@@ -77,6 +77,11 @@ body.dark-mode:not([class*=" "]) {
   color: #e0e0e0;
 }
 
+body.modal-active{
+  background-color: #202020 !important;
+  color: #e0e0e0;
+}
+
 .social-bar.dark-mode {
   background-color: #212121;
   box-shadow: 4px 4px 6px #272727,
@@ -125,17 +130,22 @@ body.dark-mode:not([class*=" "]) {
 }
 
 .mb-3 .form-control.dark-mode{
-  background-color: #343434;
-  color: #ffffff;
-  order: 1px solid #ced4da;
+  border: 1px solid #4b4b4b;
+  color: #efefef;
   border-radius: 0.25rem;
   padding: 0.375rem 0.75rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  background: #212121;
+  box-shadow: 4px 4px 6px #1b1b1b,
+              -4px -4px 6px #272727; 
 }
 
 .mb-3 .form-control.dark-mode:focus {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 0.2rem rgba(1, 111, 255, 0.788);
+  border-color: #009688; /* Change the border color on focus */
+  box-shadow: 4px 4px 10px #1b1b1b,
+              -4px -4px 10px #272727,
+              0 0 5px #009688; /* Add an extra glow effect on focus */
+  outline: none; /* Remove the default outline */
 }
 
 .card.dark-mode{
@@ -159,4 +169,29 @@ body.dark-mode:not([class*=" "]) {
   border-color: #4b4b4b;
   background-color: #393939;
   color: #e0e0e0;
+}
+
+.add-btn.dark-mode{
+  box-shadow: 4px 4px 6px #1b1b1b,
+              -4px -4px 6px #272727; 
+  transition: 0.4s;
+}
+
+.add-btn.dark-mode span {
+  color: #ffffffd9;
+}
+
+.add-btn.dark-mode:hover {
+  background: rgb(222,0,75);
+  background: linear-gradient(90deg, rgba(222,0,75,1) 6%, rgba(191,70,255,1) 59%, rgba(0,212,255,1) 105%);
+}
+.add-btn.dark-mode img{
+  opacity: 0.8;
+  filter: invert(100%);
+}
+
+.progress-loader.dark-mode{
+  background: #3b3b3b77;
+  box-shadow: 3px 3px 6px #1b1b1b,
+  -3px -3px 6px #272727; 
 }

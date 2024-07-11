@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const blogs = require('../models/blogs.js');
+const {escapeHtmlWithMarkers} = require('../service/textParser.js');
+const users = require('../models/user.js');
 
 router.get('/',async (req,res)=>{
-    const allblogs = await blogs.find({}).sort({ createdAt: -1 })
+    const allblogs = await blogs.find({}).sort({ createdAt: -1 });
     const userDestination = 'homepage'
     if(!req.user) return res.render('home',{
         user:false,
@@ -11,7 +13,6 @@ router.get('/',async (req,res)=>{
         path: userDestination
     })
     const currentUser = req.user
-
     if(currentUser.role === 'ADMIN'){}
     
     res.render('home',{
@@ -40,32 +41,31 @@ router.get('/add-new',async(req,res)=>{
 router.get('/edit/:id',async(req,res)=>{
     const blogId = req.params.id;
     const blog = await blogs.findOne({_id:blogId});
-    const userDestination = 'addpage'
-    if(!req.user) return res.render('editBlog',{
-        user:false,
-        path: userDestination
-    })
-    const currentUser = req.user
+    const userDestination = 'addpage';
+    const currentUser = req.user;
     res.render('editBlog',{
         blog,
         path: userDestination,
-        user:currentUser
+        user:currentUser,
     });
 })
 
 router.get('/blog/:id',async (req,res)=>{
     const blogId = req.params.id;
     const blog = await blogs.findOne({_id:blogId});
+    const filteredBody = escapeHtmlWithMarkers(blog.body);
     const userDestination = 'blogpage'
     if(!req.user) return res.render('blogView',{
         user:false,
         blog:blog,
+        body:filteredBody,
         path: userDestination
     })
     const currentUser = req.user;
     const flag = currentUser._id === blog.createdBy.toString();
     res.render('blogVIew',{
         blog,
+        body:filteredBody,
         path: userDestination,
         user:currentUser,
         check:flag

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const key = '@thisSHouldBeSECRET@';
 
-function setUser(user){
+function setUser(user){  // should not pass this much information in token
     const payload = {
         _id:user._id,
         email:user.email,

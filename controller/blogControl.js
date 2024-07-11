@@ -23,6 +23,7 @@ async function handleNewblog(req,res){
             userName:req.user.username,
         });
     }
+    await new Promise(resolve => setTimeout(resolve, 1600));
     return res.redirect(`/`);
 }
 async function handleUpdateById(req, res) {
@@ -59,12 +60,12 @@ async function handleUpdateById(req, res) {
 
 async function handleDeletebyId(req,res){
     const postId = req.params.id;
-    const currentPost = await blogs.findByIdAndDelete(postId);
-    console.log(currentPost);
-    return res.redirect('/');
+    await blogs.findByIdAndDelete(postId);
+    return res.json({message:'Post succesfully deleted',redirect:'/'});
 }
 
 module.exports={
     handleNewblog,
-    handleUpdateById
+    handleUpdateById,
+    handleDeletebyId
 }

@@ -10,18 +10,20 @@
 .right-bar {
   position:fixed;
   top: 50%;
-  right: 1.9vh;
+  right: 1.7vh;
   width: 60px;
   height: 100px;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
   border-radius: 17px;
-  background-color: #ffffff; 
-  animation: slideInright 0.35s ease-in-out;
+  /* background-color: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%); */
+  background-color: #eaeaeadb;
+  box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
+  transition: all .3s;
+  animation: slideInright 0.27s ease-in-out;
 }
 
 
@@ -36,6 +38,29 @@
   }
 }
 
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-45%);
+  }
+}
+
+
 
 .social-bar {
   position: fixed;
@@ -48,10 +73,11 @@
   flex-direction: column;
   align-items: center;
   /* border: 1px solid red; */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 17px;
-  background-color: #ffffff; 
   animation: slideInleft 0.35s ease-in-out;
+  background-color: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%);
+  box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
+  transition: all .3s;
 }
 
 
@@ -89,9 +115,11 @@
   flex-direction: column;
   align-items: center;
   border-radius: 17px;
-  box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  animation: slideInright 0.35s ease-in-out;
+  /* background-color: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%); */
+  background-color: #e7e7e7e8;
+  box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
+  transition: all .3s;
+  animation: slideUp 0.5s ease-in-out;
 }
 
 
@@ -195,9 +223,10 @@
   flex-direction: column;
   align-items: center;
   border-radius: 17px;
-  box-shadow: 0.1px 0.1px 3px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  animation: slideInright 0.35s ease-in-out;
+  background-color: #e7e7e7e8;
+  box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
+  transition: all .3s;
+  animation: slideDown 0.5s ease-in-out;
 }
 
 
@@ -231,4 +260,175 @@
   margin: 47px 0;
 }
 
+#linkedin:hover::after {
+  content: "LinkedIn";
+  position: absolute;
+  top:11px;
+  right:-65px;
+  transform: translateX(-50%);
+  background-color: #0000007d;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 
+#linkedin:hover::before {
+  opacity: 0.5;
+}
+
+#linkedin:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+#github:hover::after {
+  content: "Github";
+  position: absolute;
+  top:6.2em;
+  right:-5.5em;
+  transform: translateX(-50%);
+  background-color: #0000007d;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#github:hover::before {
+  opacity: 0.5;
+}
+
+#github:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+#stack:hover::after {
+  content: "Stack Overflow";
+  position: absolute;
+  top:11em;
+  right:-11em;
+  transform: translateX(-50%);
+  background-color: #0000007d;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#stack:hover::before {
+  opacity: 0.5;
+}
+
+#stack:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+#portfolio:hover::after {
+  content: "Portfolio";
+  position: absolute;
+  top:16em;
+  right:-6.6em;
+  transform: translateX(-50%);
+  background-color: #0000007d;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#portfolio:hover::before {
+  opacity: 0.5;
+}
+
+#portfolio:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cursor-message {
+  position: fixed;
+  display: none; /* Initially hidden */
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px;
+  font-size: x-small;
+  border-radius: 5px;
+  pointer-events: none; /* Ensures the message does not interfere with cursor */
+  transition: opacity 0.2s ease, transform 0.2s ease; /* Smooth transition for visibility and position */
+  max-width: 200px; /* Limit maximum width of the message */
+  text-align: center; /* Center align text */
+  z-index: 1000; /* Ensure it's above other content */
+}
+/* .msg{
+  position: absolute;
+  top:10em;
+  right:0;
+  transform: translateX(-50%);
+  background-color: #0000007d;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+} */
+
+.msg{
+  position: absolute;
+  top:12em;
+  right:-6.6em;
+  transform: translateX(-50%);
+  background-color: #0000007d;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size:small;
+  visibility: hidden;
+  /* transition: opacity 0.3s ease, visibility 0.3s ease; */
+  z-index: 1000; 
+}
+
+.progress-loader {
+  position: fixed;
+  top: 50%;
+  left: -5px;
+  height: 4px;
+  width: 100px;
+  rotate:-90deg;
+  background:rgb(148, 159, 173);
+  border: 1px solid #00000036;
+  box-shadow: -4.4px -6.2px 8px #f1f1f1, 3px 5.5px 6px #d4d7da;
+}
+
+.progress-loader {
+  width: 165px;
+  height: 4px;
+  border-radius: 7px;
+}
+
+.progress {
+  content: '';
+  width: 1px;
+  height: 3px;
+  border-radius: 7px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 0 10px white;
+  transition: 0.5s;
+}

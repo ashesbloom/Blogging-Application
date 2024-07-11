@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const editButton = document.querySelectorAll('.right-bar-opt-2');
     const cards = document.querySelectorAll('.card');
     const blogBody = document.querySelectorAll('.body-container');
+    const topBtn = document.querySelectorAll('.add-btn');
+    const progressBar = document.querySelectorAll('.progress-loader');
     
     if (localStorage.getItem('dark-mode') === 'enabled') {
         body.classList.add('dark-mode');
@@ -18,6 +20,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         editButton.forEach(link => link.classList.add('dark-mode'));
         cards.forEach(link => link.classList.add('dark-mode'));
         blogBody.forEach(link => link.classList.add('dark-mode'));
+        topBtn.forEach(link => link.classList.add('dark-mode'));
+        progressBar.forEach(link => link.classList.add('dark-mode'));
 
         toggle.checked = true;
     }
@@ -32,6 +36,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             editButton.forEach(link => link.classList.add('dark-mode'));
             cards.forEach(link => link.classList.add('dark-mode'));
             blogBody.forEach(link => link.classList.add('dark-mode'));
+            topBtn.forEach(link => link.classList.add('dark-mode'));
+            progressBar.forEach(link => link.classList.add('dark-mode'));
 
             localStorage.setItem('dark-mode', 'enabled');
         } else {
@@ -43,6 +49,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             editButton.forEach(link => link.classList.remove('dark-mode'));
             cards.forEach(link => link.classList.remove('dark-mode'));
             blogBody.forEach(link => link.classList.remove('dark-mode'));
+            topBtn.forEach(link => link.classList.remove('dark-mode'));
+            progressBar.forEach(link => link.classList.remove('dark-mode'));
 
             localStorage.setItem('dark-mode', 'disabled');
         }

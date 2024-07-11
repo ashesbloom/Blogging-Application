@@ -11,7 +11,25 @@
         <%- include('./partials/leftsideBar.ejs') %>
       </div>
       <div class="body-container">
-            <h1>Blog goes here!</h1>
+            <div class="head-controls">
+              <div class="top-left">
+                <div class="header-title"><h1>Blog goes here!</h1></div>
+              </div>
+              <div class="top-right">
+                <button class="add-btn" <% if (locals.user) { %>
+                      onclick="window.location.href='/add-new'"
+                    <% } else { %>
+                      onclick="window.location.href='/signin'"
+                    <% } %>>
+                  <span>Add Blog</span>
+                  <div class="hoverEffect">
+                  <div>
+                  </div>
+                  </div>
+                  <img src="/asset/add.png" alt="add new">
+                </button>
+              </div>
+            </div>
             <hr>
             <div class="allcards">
                 <% blogs.forEach(blog => { %>

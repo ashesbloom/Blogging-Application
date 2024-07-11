@@ -1,8 +1,28 @@
-<div class="leftbar">
-    <div class="social-bar">
-        <a href="#" class="social-icon"><img src="/asset/linkedin_logo.png" alt="LinkedIn"></a>
-        <a href="#" class="social-icon"><img src="/asset/git_logo.png" alt="GitHub"></a>
-        <a href="#" class="social-icon"><img src="/asset/stackoverflow.png" alt="StackOverflow"></a>
-        <a href="#" class="social-icon"><img src="/asset/portfolio_logo.png" alt="Portfolio"></a>
+<% if (locals.path === 'blogpage') { %>
+  <div class="leftbar">
+    <div class="social-bar" id="target-div">
+        <a href="https://twitter.com/intent/tweet?url=" 
+          onclick="shareTwitter(event)" class="social-icon" id="twitter"><img src="/asset/twitter.png" alt="twitter"></a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=" 
+          onclick="shareLinkedIn(event)" class="social-icon" id="linkedin-share"><img src="/asset/linkedin_logo.png" alt="instagram"></a>
+        <a  href="#" onclick="shareWhatsApp(event)" class="social-icon" id="whatsapp"><img src="/asset/whatsapp_logo.png" alt="whatsapp"></a>
+        <a href="#" class="social-icon" id = "link"><img src="/asset/portfolio_logo.png" alt="link"></a>
+        <div class="msg" >copied!</div>
       </div>
-</div>
+      <!-- <div class="msg" id="portfolio"><h1>cop</h1>copied!</div> -->
+  </div>
+  <div id="cursor-message" class="cursor-message">share ↪</div>
+    <div class="progress-loader">
+      <div class="progress" id="progress"></div>
+    </div>
+<% } else { %>
+  <div class="leftbar">
+    <div class="social-bar" id="target-div">
+        <a href="https://www.linkedin.com/in/onlinerecord-mayank/" class="social-icon" id="linkedin"><img src="/asset/linkedin_logo.png" alt="LinkedIn"></a>
+        <a href="https://github.com/ashesbloom" class="social-icon" id="github"><img src="/asset/git_logo.png" alt="GitHub"></a>
+        <a href="https://stackoverflow.com/users/23047182/mayank-pandey" class="social-icon" id="stack"><img src="/asset/stackoverflow.png" alt="StackOverflow"></a>
+        <a href="#" class="social-icon" id="portfolio"><img src="/asset/portfolio_logo.png" alt="Portfolio"></a>
+      </div>
+  </div>
+  <div id="cursor-message" class="cursor-message">Contact 📮</div>
+<% } %>

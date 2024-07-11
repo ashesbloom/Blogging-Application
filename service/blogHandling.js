@@ -23,10 +23,11 @@ function calculateReadingTime(text) {
   const words = text.trim().split(/\s+/).length;
   
   // Estimate reading time (average reading speed: 200 words per minute)
-  const readingTime = Math.ceil(words / 200); // Round up to the nearest minute
+  const readingTime = Math.ceil(words /100); // Round up to the nearest minute
   
   return readingTime;
 }
+
 
 module.exports = {
   upload,
