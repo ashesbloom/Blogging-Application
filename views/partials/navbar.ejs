@@ -1,6 +1,14 @@
   <!-- this the code which is common in every page of the application -->
-<div class="headpage">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="headpage">
+    <nav 
+          class="navbar navbar-expand-lg bg-body-tertiary" 
+          style = "<% if (locals.path === 'signup' || locals.path === 'signin') { %>
+                  border-radius: 17px; 
+                  box-shadow: inset 4px 4px 2px #2f2f2f, inset -4px -4px 2px #333333; 
+                  background: linear-gradient(#e2e2e2); 
+                  margin-top: 10px;
+              <% } %>" 
+          data-bs-theme="dark">    
       <div class="container-fluid">
         <a class="navbar-brand" href="#" onclick="window.location.href='/'">Blogs!</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

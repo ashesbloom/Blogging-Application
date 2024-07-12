@@ -77,7 +77,7 @@
   animation: slideInleft 0.35s ease-in-out;
   background-color: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%);
   box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
-  transition: all .3s;
+  transition: all .4s;
 }
 
 
@@ -118,7 +118,7 @@
   /* background-color: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%); */
   background-color: #e7e7e7e8;
   box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
-  transition: all .3s;
+  transition: all .4s;
   animation: slideUp 0.5s ease-in-out;
 }
 
@@ -137,6 +137,7 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: 0.4s;
 }
 
 .right-bar-opt:hover::before {
@@ -245,6 +246,7 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: 0.4s;
 }
 
 .right-bar-opt-2:hover::before {

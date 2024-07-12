@@ -73,21 +73,27 @@ router.get('/blog/:id',async (req,res)=>{
 })
 
 router.get('/signup',async (req,res)=>{
+    const userDestination = 'signup';
     if(!req.user) return res.render('signup',{
         user:false,
+        path:userDestination
     })
     res.render('signup',{
         user:req.user,
-        registred:'You are already logged in!'
+        registred:'You are already logged in!',
+        path:userDestination
     });
 })
 router.get('/signin',async (req,res)=>{
+    const userDestination = 'signup';
     if(!req.user) return res.render('signin',{
         user:false,
+        path:userDestination
     })
     res.render('signin',{
         user:req.user,
-        registred:'You are already logged in!'
+        registred:'You are already logged in!',
+        path:userDestination
     });
 })
 

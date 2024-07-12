@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('./partials/head.ejs') %> <!-- Include the head partial -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark/dark.css">
+    <link rel="stylesheet" href="/stylesheet/mainStylesheet.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
@@ -11,7 +15,7 @@
     <!-- Custom CSS -->
     <style>
         body {
-            background-color: #2b3035;
+            background-color: #e2e2e2;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -28,11 +32,11 @@
         }
         .container {
             margin-top: 2vh;
-            background-color: #fff;
             max-width: 500px;
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%);
+            box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
             animation: fadeInUp 1s ease;
             font-size: 15px;
         }
@@ -46,11 +50,13 @@
             padding: 8px;
         }
 
-        .form-control {
+        .form-group .form-control {
             margin-bottom: 1rem;
             border-radius: 20px;
             transition: all 0.3s ease;
             padding: 10px;
+            background-color: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%);
+            box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
         }
 
         .form-control:focus {
@@ -120,10 +126,8 @@
     <div class="container animate__animated animate__fadeInUp">
         <h1 class="text-center mb-4" id="head">Sign In</h1>
         <% if (locals.registred) { %>
-            <hr>
             <p style="color: rgb(255, 128, 0); font-size:medium; margin-top: 10px; text-align: center;"><%= registred %></p>
             <a href="#" style="text-decoration: none;"><p style=" font-size:x-small; text-align: center;" onclick="window.location.href='/' ">Go to homepage ></p></a>
-            <hr>
         <% } %>
         <form action="/user/login" method="post">
             <div class="form-group">

@@ -86,33 +86,30 @@ body.modal-active{
   background-color: #212121;
   box-shadow: 4px 4px 6px #272727,
               -4px -4px 5px #151515;
-  transition: 0.4s;
+  
 }
 .social-bar.dark-mode  img{
   filter: invert(100%);
-  transition: 0.4s;
 }
 .right-bar.dark-mode {
   background-color: #212121;
   box-shadow: 6px -1px 6px #151515,
               -4px -4px 5px  #272727;
-  transition: 0.4s;
 }
 
 .right-bar.dark-mode img{
   filter: invert(100%);
-  transition: 0.4s;
 }
 
 .right-bar-opt.dark-mode{
   background-color: #393939;
   box-shadow: -4px -4px 6px #212121ab; 
-  transition: 0.4s;
+
 }
 
 .right-bar-opt.dark-mode img{
   filter: invert(100%);
-  transition: 0.4s;
+
 }
 .right-bar-opt-2.dark-mode{
   background-color: #393939;
@@ -122,7 +119,7 @@ body.modal-active{
 
 .right-bar-opt-2.dark-mode img{
   filter: invert(100%);
-  transition: 0.4s;
+
 }
 
 .right-bar-opt-2.dark-mode .editBtn::before{
@@ -132,9 +129,6 @@ body.modal-active{
 .mb-3 .form-control.dark-mode{
   border: 1px solid #4b4b4b;
   color: #efefef;
-  border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   background: #212121;
   box-shadow: 4px 4px 6px #1b1b1b,
               -4px -4px 6px #272727; 
@@ -152,7 +146,6 @@ body.modal-active{
   background: #212121;
   box-shadow: 4px 4px 6px #1b1b1b,
               -4px -4px 6px #272727; 
-  transition: 0.4s;
 }
 .card.dark-mode:hover {
   cursor: pointer;
@@ -174,16 +167,21 @@ body.modal-active{
 .add-btn.dark-mode{
   box-shadow: 4px 4px 6px #1b1b1b,
               -4px -4px 6px #272727; 
-  transition: 0.4s;
+
 }
 
 .add-btn.dark-mode span {
   color: #ffffffd9;
 }
+.add-btn.dark-mode:hover span {
+  color: #ffffff;
+  text-shadow: #151515 8px 8px 8px;
+}
 
 .add-btn.dark-mode:hover {
   background: rgb(222,0,75);
-  background: linear-gradient(90deg, rgba(222,0,75,1) 6%, rgba(191,70,255,1) 59%, rgba(0,212,255,1) 105%);
+  background: linear-gradient(90deg, rgba(222,0,75,1) 4%, rgba(191,70,255,1) 79%, rgba(0,212,255,1) 120%);
+
 }
 .add-btn.dark-mode img{
   opacity: 0.8;
@@ -195,3 +193,4 @@ body.modal-active{
   box-shadow: 3px 3px 6px #1b1b1b,
   -3px -3px 6px #272727; 
 }
+

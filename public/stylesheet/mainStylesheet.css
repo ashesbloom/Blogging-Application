@@ -3,12 +3,12 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #e8e8e8;
     color: #000000;
-    transition: background-color 0.3s, color 0.3s;
+    transition:0.1.5s ease-in-out;
     position: relative; /* Ensure relative positioning of the body */
     z-index: 0; /* Ensure z-index is set */
   }
   
-  
+
 .main-container{
     display:grid;
     grid-template-columns: 1.12fr 5.5fr 1.31fr;
@@ -56,7 +56,7 @@ body {
   border-radius: 15px; 
   background:rgba(255, 255, 255, 0.453);
   /* background-color: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%); */
-  box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
+  box-shadow: -4px -10px 10px #f1f1f1, 6px 9px 12px #d4d7da;
   transition: 0.4s;
 }
 
@@ -114,7 +114,7 @@ body {
 }
 
 .form-control{
-  background-color: #f8f9fa;
+  background-color: #ababab85;
   color: #000000;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
@@ -647,7 +647,7 @@ body {
 
 .hoverEffect div {
   background: rgb(222, 0, 75);
-  background: linear-gradient(90deg, rgba(222,0,75,1) 0%, rgba(191,70,255,1) 49%, rgba(0,212,255,1) 100%);
+  background: linear-gradient(90deg, rgba(222,0,75,1) 5%, rgba(191,70,255,1) 50%, rgba(0,212,255,1) 110%);
   border-radius: 40rem;
   width: 10rem;
   height: 10rem;
@@ -662,7 +662,7 @@ body {
   height: 8rem;
   animation: effect infinite 2s ease-in-out;
   background: rgb(222, 0, 75);
-  background: linear-gradient(90deg, rgba(222,0,75,1) 5%, rgba(191,70,255,1) 69%, rgba(0,212,255,1) 110%);
+  background: linear-gradient(90deg, rgba(222,0,75,1) 10%, rgba(191,70,255,1) 79%, rgba(0,212,255,1) 120%);
 }
 
 /* Media queries for responsiveness */

@@ -106,7 +106,8 @@ let copyButton = document.getElementById("link"); //the copy icon
 let copySuccess = document.querySelector(".msg"); //the message to be displayed after copying
 
 // Add event listener to the copy icon
-copyButton.addEventListener("click", function() {
+copyButton.addEventListener("click", function(event) {
+    event.preventDefault()
     // Create a temporary textarea element
     let tempTextArea = document.createElement("textarea");
     tempTextArea.value = copiedText;
@@ -138,9 +139,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const updateProgressBar = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if(document.documentElement.scrollHeight === document.documentElement.clientHeight){
+      progressBar.style.width = '100%';
+      progressBar.style.backgroundColor = '#AAFF00';
+      return;
+    }
     const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrollPercent = (scrollTop / docHeight) * 100;
     progressBar.style.width = `${scrollPercent}%`;
+    
   };
 
   document.addEventListener('scroll', updateProgressBar);

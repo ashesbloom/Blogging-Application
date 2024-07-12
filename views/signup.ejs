@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('./partials/head.ejs') %> <!-- Include the head partial -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark/dark.css">
+    <link rel="stylesheet" href="/stylesheet/mainStylesheet.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
     <link rel="icon" href="/assets/_226deb92-9e15-4948-99e4-a9e931bcb907.png" type="image/x-icon"> <!-- favicon -->
     <!-- Animate.css for animations -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
         body {
-            background-color: #2b3035;
+            background-color: #e2e2e2;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -22,13 +26,13 @@
 
         .container {
             margin-top: 2vh;
-            background-color: #fff;
             max-width: 800px;
             width: 100%;
             max-height:550px;
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%);
+            box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
             animation: fadeInUp 1s ease;
             font-size: 15px;
         }
@@ -47,10 +51,12 @@
             padding: 8px;
         }
 
-        .form-control {
+        .form-group .form-control {
             margin-bottom: 1rem;
             border-radius: 20px;
             transition: all 0.3s ease;
+            background-color: linear-gradient(45deg, rgb(228, 232, 236) 0%, rgb(234 234 234) 100%);
+            box-shadow: -2px -7px 10px #f1f1f1, 4px 6px 10px #d4d7da;
         }
 
         .form-control:focus {
