@@ -50,7 +50,7 @@ async function handleUpdateById(req, res) {
         if (!updatedPost) {
             return res.status(400).json({ error: 'Failed to update post' });
         }
-
+        await new Promise(resolve => setTimeout(resolve, 1000));
         return res.redirect(`/blog/${updatedPost._id}`);
     } catch (error) {
         console.error(error);

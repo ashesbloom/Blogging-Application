@@ -52,7 +52,7 @@ router.get('/edit/:id',async(req,res)=>{
 
 router.get('/blog/:id',async (req,res)=>{
     const blogId = req.params.id;
-    const blog = await blogs.findOne({_id:blogId});
+    const blog = await blogs.findOne({_id:blogId}).populate('createdBy');
     const filteredBody = escapeHtmlWithMarkers(blog.body);
     const userDestination = 'blogpage'
     if(!req.user) return res.render('blogView',{

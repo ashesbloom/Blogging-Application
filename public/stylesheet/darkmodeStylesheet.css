@@ -73,12 +73,12 @@
 /* Dark mode */
 
 body.dark-mode:not([class*=" "]) {
-  background-color: #202020;
+  background-color: #202020fd;
   color: #e0e0e0;
 }
 
 body.modal-active{
-  background-color: #202020 !important;
+  background-color: #202020fd !important;
   color: #e0e0e0;
 }
 
@@ -161,7 +161,15 @@ body.modal-active{
 .body-container.dark-mode .blog-body{
   border-color: #4b4b4b;
   background-color: #393939;
+  box-shadow: 4px 4px 6px #1b1b1b,
+  -4px -4px 6px #272727; 
   color: #e0e0e0;
+}
+.body-container.dark-mode .blog-image{
+  border-color: #4b4b4b;
+  background-color: #393939;
+  box-shadow: 4px 4px 6px #1b1b1b,
+  -4px -4px 6px #272727; 
 }
 
 .add-btn.dark-mode{
@@ -194,3 +202,35 @@ body.modal-active{
   -3px -3px 6px #272727; 
 }
 
+.comments-section.dark-mode{
+  border-color: #4b4b4b;
+  background-color: #393939;
+  box-shadow: 4px 4px 6px #1b1b1b,
+  -4px -4px 6px #272727; 
+  color: #e0e0e0;
+}
+
+.comments-section.dark-mode .profile-pic{
+  border-color: #4b4b4b;
+}
+.comments-section.dark-mode .comment-box{
+  border-bottom:1px solid #4b4b4b;
+}
+.comments-section.dark-mode .comment-box input{
+  border:1px solid #4b4b4b;
+  background-color: #4b4b4b;
+}
+.comments-section.dark-mode .comment-box input:focus {
+  outline: none;
+  border-color: #ffffff;
+}
+
+
+.comments-section.dark-mode .comment-box-buttons{
+  filter: invert(100%);
+}
+
+.comments-section.dark-mode .reply-comment{
+  background-color: #4b4b4b;
+  border-left: 1px solid #a5a5a5;
+}

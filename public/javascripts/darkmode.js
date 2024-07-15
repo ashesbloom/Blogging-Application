@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const blogBody = document.querySelectorAll('.body-container');
     const topBtn = document.querySelectorAll('.add-btn');
     const progressBar = document.querySelectorAll('.progress-loader');
-    const navbar = document.querySelectorAll('.navbar navbar-expand-lg');
+    const comments = document.querySelectorAll('.comments-section');
+    
     
     const applyDarkMode = () => {
         body.classList.add('dark-mode');
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         blogBody.forEach(link => link.classList.add('dark-mode'));
         topBtn.forEach(link => link.classList.add('dark-mode'));
         progressBar.forEach(link => link.classList.add('dark-mode'));
+        comments.forEach(link => link.classList.add('dark-mode'));
     };
 
     const removeDarkMode = () => {
@@ -36,6 +38,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         blogBody.forEach(link => link.classList.remove('dark-mode'));
         topBtn.forEach(link => link.classList.remove('dark-mode'));
         progressBar.forEach(link => link.classList.remove('dark-mode'));
+        comments.forEach(link => link.classList.remove('dark-mode'));
     };
 
     if (localStorage.getItem('dark-mode') === 'enabled') {

@@ -22,6 +22,68 @@
             <div class="blog-body">
                 <%- body %>
             </div>
+            <hr>
+            <div class="comments-section">
+              <div class="comment-head">
+                <h2>No. of comments</h2>
+              </div>
+              <div class="comment-box">
+                  <img src="<%= blog.createdBy.profile %>" alt="User Profile Picture" class="profile-pic">
+                  <input type="text" placeholder="Write a comment...">
+                  <div class="comment-box-buttons">
+                    <button class="publish-button">
+                      <p>Publish</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="4"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+              </div>
+              <div class="comment">
+                  <img src="<%= blog.createdBy.profile %>" alt="Anna's Profile Picture" class="profile-pic">
+                  <div class="comment-content">
+                      <div class="comment-header">
+                          <span class="username"><%=  %></span></span>
+                          <span class="time">9 minutes ago</span>
+                      </div>
+                      <div class="comment-text">
+                          Great article for anyone thinking of trying Yoga for the first time. The poses listed are really easy to do and will help increase flexibility.
+                      </div>
+                      <div class="comment-footer">
+                          <span class="like">😸 2 Likes</span>
+                          <span class="reply">Reply 📬</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="reply-comment">
+                  <img src="<%= blog.createdBy.profile %>" alt="Zoe's Profile Picture" class="profile-pic">
+                  <div class="comment-content">
+                      <div class="comment-header">
+                          <span class="username">Zoe</span>
+                          <span class="time">a few seconds ago</span>
+                      </div>
+                      <div class="comment-text">
+                          <span class="replying-to">Replying to <a href="#">Anna</a></span>
+                          When I first started Yoga I really struggled with Downward Dog. But it's great for stretching out your back.
+                      </div>
+                      <div class="comment-footer">
+                          <span class="like"> 😸 1 Like</span>
+                          <span class="reply">Reply 📬</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
       <div class="rside-container">
         <%- include('./partials/rightsideBar.ejs') %>
