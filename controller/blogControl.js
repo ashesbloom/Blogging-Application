@@ -2,6 +2,9 @@ const blogs = require('../models/blogs.js');
 const comments = require('../models/comments.js');
 const {calculateReadingTime} = require('../service/blogHandling.js');
 const fs = require('fs');
+const path = require('path');
+
+
 async function handleNewblog(req, res) {
     const currentUser = req.user;
     const userDestination = 'addpage';
@@ -79,20 +82,43 @@ async function handleUpdateById(req, res) {
     }
 }
 
-async function handleDeletebyId(req,res){
+async function handleDeletebyId(req, res) {
     const postId = req.params.id;
-    await blogs.findByIdAndDelete(postId);
-    await comments.deleteMany({ blogId: postId });
-    if (req.file) {
-        const FileName = req.file.filename;
-        const filePath = `uploads/${req.user._id}/${FileName}`;
-        fs.unlink(filePath, (err) => {
-        if (err) {
-            console.error("Error deleting file:", err);
+
+    try {
+        // Fetch the blog post to get the attachment file path
+        const blogPost = await blogs.findById(postId);
+        if (!blogPost) {
+            return res.status(404).json({ message: 'Blog post not found' });
         }
-    });
+
+        // Delete the blog post
+        await blogs.findByIdAndDelete(postId);
+
+        // Delete associated comments
+        await comments.deleteMany({ blogId: postId });
+
+        // Delete the attachment file if it exists
+        if (blogPost.attachment) {
+            const attachmentFilePath = path.resolve(__dirname, '..', 'public', blogPost.attachment);
+            fs.access(attachmentFilePath, fs.constants.F_OK, (err) => {
+                if (err) {
+                    console.error('Attachment file does not exist:', attachmentFilePath);
+                } else {
+                    fs.unlink(attachmentFilePath, (err) => {
+                        if (err) {
+                            console.error('Error deleting attachment file:', err);
+                        }
+                    });
+                }
+            });
+        }
+
+        return res.json({ message: 'Post successfully deleted', redirect: '/' });
+    } catch (err) {
+        console.error('Error deleting post:', err);
+        return res.status(500).json({ message: 'Server error' });
     }
-    return res.json({message:'Post succesfully deleted',redirect:'/'});
 }
 
 async function handleNewComment(req,res){
