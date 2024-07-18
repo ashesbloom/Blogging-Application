@@ -25,66 +25,113 @@
             <hr>
             <div class="comments-section">
               <div class="comment-head">
-                <h2>No. of comments</h2>
+                <h2>Comments : <%= comments.length %></h2>
               </div>
-              <div class="comment-box">
-                  <img src="<%= blog.createdBy.profile %>" alt="User Profile Picture" class="profile-pic">
-                  <input type="text" placeholder="Write a comment...">
-                  <div class="comment-box-buttons">
-                    <button class="publish-button">
-                      <p>Publish</p>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="4"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-              </div>
-              <div class="comment">
-                  <img src="<%= blog.createdBy.profile %>" alt="Anna's Profile Picture" class="profile-pic">
-                  <div class="comment-content">
-                      <div class="comment-header">
-                          <span class="username"><%=  %></span></span>
-                          <span class="time">9 minutes ago</span>
-                      </div>
-                      <div class="comment-text">
-                          Great article for anyone thinking of trying Yoga for the first time. The poses listed are really easy to do and will help increase flexibility.
-                      </div>
-                      <div class="comment-footer">
-                          <span class="like">😸 2 Likes</span>
-                          <span class="reply">Reply 📬</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="reply-comment">
-                  <img src="<%= blog.createdBy.profile %>" alt="Zoe's Profile Picture" class="profile-pic">
-                  <div class="comment-content">
-                      <div class="comment-header">
-                          <span class="username">Zoe</span>
-                          <span class="time">a few seconds ago</span>
-                      </div>
-                      <div class="comment-text">
-                          <span class="replying-to">Replying to <a href="#">Anna</a></span>
-                          When I first started Yoga I really struggled with Downward Dog. But it's great for stretching out your back.
-                      </div>
-                      <div class="comment-footer">
-                          <span class="like"> 😸 1 Like</span>
-                          <span class="reply">Reply 📬</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        </div>
+              <form action="/blog/comment/<%= blog._id %>" method="post">
+                <div class="comment-box">
+                    <img src="<%= blog.createdBy.profile %>" alt="User Profile Picture" class="profile-pic">
+                    <input type="text" placeholder="Write a comment..." name="content" spellcheck="true">
+                    <div class="comment-box-buttons">
+                      <button class="publish-button">
+                        <p>Publish</p>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="4"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                </div>
+              </form>
+              <% if (comments.length > 0) { %>
+                <% comments.forEach(comment => { %>
+                  <% if (comment.parent) { %>
+                        <div class="comment">
+                          <img src="<%= comment.author.profile %>" alt="<%= comment.author.fullname %>'s Profile Picture" class="profile-pic">
+                          <div class="comment-content">
+                              <div class="comment-header">
+                                  <span class="username"><%= comment.name %></span>
+                                  <span class="time"><%= formatDate(comment.createdAt) %></span>
+                                    <% function formatDate(date) { %>
+                                    <% const formattedDate = new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: '2-digit' }); %>
+                                    <% const formattedTime = new Date(date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }); %>
+                                    <%= formattedDate %> at <%= formattedTime %>
+                                    <% } %>
+                              </div>
+                              <div class="comment-text">
+                                  <%= comment.content %>
+                              </div>
+                              <div class="comment-footer">
+                                  <div class="comment-actions">
+                                    <span style='margin-right: 10px;'><label class="ui-like">
+                                      <input type="checkbox">
+                                      <div class="like" onclick="commentAction('/blog/comment/<%= blog._id %>/action/<%= comment._id %>')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                      </label>
+                                    </span>
+                                    <span><%= comment.likes.length %> Likes</span>
+                                  </div>
+                                  <span class="reply" onclick="showReplyBox(this)">Reply 📬</span>
+                              </div>
+                              <form action="/blog/comment/<%= blog._id %>" method="POST" class="reply-form">
+                                <textarea placeholder="Write a reply..." name="content" spellcheck="true"></textarea>
+                                <input type="hidden" name="parent" value="<%= comment._id %>">
+                                <button type="submit">Reply</button>
+                            </form>
+                          </div>
+                        </div>
+                  <% } %>
+                    <% if (comment.replies.length > 0) { %>
+                      <% comment.replies.forEach(reply => { %>
+                        
+                        <div class="reply-comment">
+                          <img src="<%= reply.author.profile %>" alt="<%= reply.author.fullname %>" class="profile-pic">
+                          <div class="comment-content">
+                            <div class="comment-header">
+                              <span class="username"><%=reply.name %></span>
+                              <span class="time"><%= formatDate(reply.createdAt) %></span>
+                            </div>
+                            <div class="comment-text">
+                              <span class="replying-to">Replying to <a href="#"><%= comment.name %></a></span>
+                                  <%= reply.content %>
+                            </div>
+                            <div class="comment-footer">
+                              <div class="comment-actions">
+                                <span style='margin-right: 10px;'><label class="ui-like">
+                                  <input type="checkbox">
+                                  <div class="like" onclick="commentAction('/blog/comment/<%= blog._id %>/action/<%= reply._id %>')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                    </div>
+                                  </label></span>
+                                <span><%=reply.likes.length%> Likes</span>
+                              </div>
+                              <span class="reply" herf="#" onclick="showReplyBox(this)">Reply 📬</span>
+                            </div>
+                            <form action="/blog/comment/<%= blog._id %>" method="POST" class="reply-form">
+                              <textarea name="content" placeholder="Write a reply..." spellcheck="true"></textarea>
+                              <input type="hidden" name="parent" value="<%= comment._id %>">
+                              <button type="submit">Reply</button>
+                            </form>
+                          </div>
+                        </div>
+                      <% }) %>
+                    <% } %>
+              <% }); %>
+              <% } else { %>
+                    <p style="margin: 20px 0 0 20px;">No comments yet. Be the first to comment!</p>
+              <% } %>
+            </div>
+      </div>
       <div class="rside-container">
         <%- include('./partials/rightsideBar.ejs') %>
       </div>

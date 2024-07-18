@@ -30,6 +30,9 @@
                                 <label for="attachment" class="form-label">Attachment</label>
                                 <input type="file" class="form-control" id="attachment" name="attachment">
                             </div>
+                            <% if (locals.error) { %>
+                                <p style="color: red; font-size: smaller; margin-left: 10px;"><%= error %></p>
+                            <% } %>
                             <button class="post-btn">
                                 <span class="txt">submit</span>
                                 <span class="txt2">posted!</span>

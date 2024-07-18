@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const blogs = require('../models/blogs.js');
 const {escapeHtmlWithMarkers} = require('../service/textParser.js');
-const users = require('../models/user.js');
+// const users = require('../models/user.js');
+const comments = require('../models/comments.js');
 
 router.get('/',async (req,res)=>{
     const allblogs = await blogs.find({}).sort({ createdAt: -1 });
@@ -24,10 +25,7 @@ router.get('/',async (req,res)=>{
 
 router.get('/add-new',async(req,res)=>{
     const userDestination = 'addpage'
-    if(!req.user) return res.render('home',{
-        user:false,
-        path: userDestination
-    })
+    if(!req.user) return res.redirect('/signin');
     const currentUser = req.user
 
     if(currentUser.role === 'ADMIN'){}
@@ -39,6 +37,7 @@ router.get('/add-new',async(req,res)=>{
 })
 
 router.get('/edit/:id',async(req,res)=>{
+    if(!req.user) return res.redirect('/signin');
     const blogId = req.params.id;
     const blog = await blogs.findOne({_id:blogId});
     const userDestination = 'addpage';
@@ -49,28 +48,43 @@ router.get('/edit/:id',async(req,res)=>{
         user:currentUser,
     });
 })
-
-router.get('/blog/:id',async (req,res)=>{
+router.get('/blog/:id', async (req, res) => {
     const blogId = req.params.id;
-    const blog = await blogs.findOne({_id:blogId}).populate('createdBy');
-    const filteredBody = escapeHtmlWithMarkers(blog.body);
-    const userDestination = 'blogpage'
-    if(!req.user) return res.render('blogView',{
-        user:false,
-        blog:blog,
-        body:filteredBody,
-        path: userDestination
-    })
-    const currentUser = req.user;
-    const flag = currentUser._id === blog.createdBy.toString();
-    res.render('blogVIew',{
-        blog,
-        body:filteredBody,
-        path: userDestination,
-        user:currentUser,
-        check:flag
-    });
-})
+    try {
+        const blog = await blogs.findById(blogId).populate('createdBy');
+        if (!blog) {
+            return res.status(404).send('Blog post not found');
+        }
+
+        const filteredBody = escapeHtmlWithMarkers(blog.body);
+        const userDestination = 'blogpage';
+        const Allcomments = await comments.find({ blogId }).sort({ createdAt: -1 }).populate('author').populate(
+            { path: 'replies', populate: { path: 'author' } });
+        if (!req.user) {
+            return res.render('blogView', {
+                user: false,
+                blog: blog,
+                comments: Allcomments,
+                body: filteredBody,
+                path: userDestination
+            });
+        }
+
+        const currentUser = req.user;
+        const flag = currentUser._id === blog.createdBy._id.toString();
+        res.render('blogView', {
+            blog,
+            comments: Allcomments,
+            body: filteredBody,
+            path: userDestination,
+            user: currentUser,
+            check: flag
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
+    }
+});
 
 router.get('/signup',async (req,res)=>{
     const userDestination = 'signup';

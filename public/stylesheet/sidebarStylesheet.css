@@ -216,7 +216,7 @@
 .right-bar-opt-2 {
   position: fixed;
   right:1.6vh;
-  top:59%; 
+  top:58%; 
   transform: translateY(-50%);
   width:3.7em; 
   height:5.8em;
@@ -235,8 +235,8 @@
 .right-bar-opt-2:hover::after {
   content: "edit your post";
   position: absolute;
-  top:45px;
-  left: -50%;
+  top:52px;
+  left: -55%;
   transform: translateX(-50%);
   background-color: #0000007d;
   color: #fff;

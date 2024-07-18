@@ -49,6 +49,23 @@ function deleteAlert(url) {
     }
 }
 
+async function commentAction(url) {
+  try {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    localStorage.setItem('scrollTop', scrollTop); // Save scroll position
+    const response = await fetch(url, { method: 'POST' });
+    const result = await response.json();
+    await new Promise(resolve => setTimeout(resolve, 700));
+    if (result.redirect) {
+      window.location.href = result.redirect;
+      scrollTo(0, scrollTop);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const targetDiv = document.getElementById('target-div');
     const cursorMessage = document.getElementById('cursor-message');
@@ -82,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
     event.preventDefault(); // Prevent the default action of the link
     const currentUrl = encodeURIComponent(window.location.href);
     const copiedText = decodeURIComponent(window.location.href); 
-    const text = 'Check out this link'+ copiedText;
+    const text = 'Check out this link: '+ copiedText;
     const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}&text=${encodeURIComponent(text)}`;
     window.open(shareUrl, '_blank'); // Open LinkedIn sharing page in new tab
   }
@@ -154,3 +171,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
   updateProgressBar();
 });
+
+function showReplyBox(element) {
+  const replyForm = element.closest('.comment, .reply-comment').querySelector('.reply-form');
+  if (replyForm.classList.contains('show')) {
+      replyForm.classList.remove('show');
+  } else {
+      document.querySelectorAll('.reply-form').forEach(form => form.classList.remove('show'));
+      replyForm.classList.add('show');
+  }
+}
+
+// Hide the reply form when clicking outside
+document.addEventListener('click', function(event) {
+  const replyForms = document.querySelectorAll('.reply-form');
+  replyForms.forEach(form => {
+      if (!form.contains(event.target) && !form.previousElementSibling.contains(event.target)) {
+          form.classList.remove('show');
+      }
+  });
+});
+
+// Prevent clicks inside the reply form from closing it
+document.querySelectorAll('.reply-form').forEach(form => {
+  form.addEventListener('click', function(event) {
+      event.stopPropagation();
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollTop = localStorage.getItem('scrollTop');
+  if (scrollTop !== null) {
+    window.scrollTo(0, parseInt(scrollTop, 10));
+    localStorage.removeItem('scrollTop'); // Remove it after using
+  }
+});
+
