@@ -1,6 +1,11 @@
-<% if (locals.path !== 'homepage') { %>
+<% if (locals.path != 'homepage') { %>
     <div class="right-bar-opt">
-        <a href="#" onclick="window.history.back()" class="social-icon opt"><img src="/asset/backarrow.png" alt="Go Back!"></a>
+        <a href="#" 
+            <% if (locals.path != 'blogpage') { %>
+                onclick="window.history.back()"
+            <% }else{ %> 
+                onclick="window.location.href='/'"
+            <%}%> class="social-icon opt"><img src="/asset/backarrow.png" alt="Go Back!"></a>
     </div>
 <% } %>
 <div class="right-bar">

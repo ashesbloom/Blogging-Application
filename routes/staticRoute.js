@@ -50,6 +50,7 @@ router.get('/edit/:id',async(req,res)=>{
 })
 router.get('/blog/:id', async (req, res) => {
     const blogId = req.params.id;
+    const userDestination = 'blogpage';
     try {
         const blog = await blogs.findById(blogId).populate('createdBy');
         if (!blog) {
@@ -57,7 +58,6 @@ router.get('/blog/:id', async (req, res) => {
         }
 
         const filteredBody = escapeHtmlWithMarkers(blog.body);
-        const userDestination = 'blogpage';
         const Allcomments = await comments.find({ blogId }).sort({ createdAt: -1 }).populate('author').populate(
             { path: 'replies', populate: { path: 'author' } });
         if (!req.user) {
