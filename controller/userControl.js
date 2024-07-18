@@ -50,8 +50,22 @@ function handleuserLogout(req,res){
 
 }
 
+async function handleuserUpdate(req,res){
+    if(req.fileUploadError) return res.status(400).send(req.fileUploadError);
+    const userId = req.user._id;
+    if(!userId) return res.redirect('/signin');
+
+    await users.findByIdAndUpdate(userId,{
+        profile:`/uploads/${userId}/${req.file.filename}`
+    });
+
+    return res.redirect('/');
+}
+
+
 module.exports = {
     handleuserSignin,
     handleuserSignup,
-    handleuserLogout
+    handleuserLogout,
+    handleuserUpdate
 }

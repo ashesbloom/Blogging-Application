@@ -18,10 +18,10 @@ async function handleNewblog(req, res) {
                 error: req.fileUploadError
             });
         }
-        await new Promise(resolve => setTimeout(resolve, 1600));
+        await new Promise(resolve => setTimeout(resolve, 500));
         const { title, body } = req.body;
         const readingTime = calculateReadingTime(body);
-
+        await new Promise(resolve => setTimeout(resolve, 500));
         // Create new blog entry
         if (req.file) {
             const FileName = req.file.filename;
@@ -42,6 +42,7 @@ async function handleNewblog(req, res) {
                 userName: req.user.username,
             });
         }
+        await new Promise(resolve => setTimeout(resolve, 600));
         // Redirect to home page
         return res.redirect(`/`);
     } catch (error) {
@@ -51,6 +52,10 @@ async function handleNewblog(req, res) {
 }
 
 async function handleUpdateById(req, res) {
+    if (req.fileUploadError) {
+        console.error('Error uploading file:', req.fileUploadError);
+        return res.status(400).json({ error: req.fileUploadError });
+    }
     const blogID = req.params.id;
     if (!blogID) return res.status(404).send('Post not found!');
 

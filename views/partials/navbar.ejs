@@ -1,52 +1,66 @@
-  <!-- this the code which is common in every page of the application -->
-  <div class="headpage">
-    <nav 
-          class="navbar navbar-expand-lg bg-body-tertiary" 
-          style = "<% if (locals.path === 'signup' || locals.path === 'signin') { %>
-                  border-radius: 17px; 
-                  box-shadow: inset 4px 4px 2px #2f2f2f, inset -4px -4px 2px #333333; 
-                  background: linear-gradient(#e2e2e2); 
-                  margin-top: 10px;
-              <% } %>" 
-          data-bs-theme="dark">    
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#" onclick="window.location.href='/'">Blogs!</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <% if(locals.user){ %>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#" onclick="window.location.href='/'">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onclick="window.location.href='/add-new'">Add Blog</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= user.username %></a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Change Profile</a></li>
-                  <li>
-                    <form action="/user/logout" method="post">
-                      <button type="submit" class="dropdown-item">Logout</button>
-                    </form>
-                  </li>
-                </ul>
-              </li>
-            <% } else { %>  
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#" onclick="window.location.href='/'">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="window.location.href='/signup'" href="#">Create Account</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="window.location.href='/signin'" href="#">SignIn</a>
-              </li>
-            <% } %>
-          </ul>
-        </div>
+<!-- this the code which is common in every page of the application -->
+<div class="headpage">
+  <nav 
+    class="navbar navbar-expand-lg bg-body-tertiary" 
+    style="<% if (locals.path === 'signup' || locals.path === 'signin') { %>
+           border-radius: 17px; 
+           box-shadow: inset 4px 4px 2px #2f2f2f, inset -4px -4px 2px #333333; 
+           background: linear-gradient(#e2e2e2); 
+           margin-top: 10px;
+           <% } %>" 
+    data-bs-theme="dark">    
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" onclick="window.location.href='/'">Blogs!</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <% if(locals.user){ %>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#" onclick="window.location.href='/'">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="window.location.href='/add-new'">Add Blog</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= user.fullname %></a>
+              <ul class="dropdown-menu">
+                <!-- <li><a class="dropdown-item" href="">Change Profile</a></li> -->
+                <li>
+                  <form action="/user/logout" method="post">
+                    <button type="submit" class="dropdown-item">Logout</button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+          <% } else { %>  
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#" onclick="window.location.href='/'">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="window.location.href='/signup'" href="#">Create Account</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="window.location.href='/signin'" href="#">SignIn</a>
+            </li>
+          <% } %>
+        </ul>
+        <% if (locals.user && locals.path != 'signup' && locals.path != 'signin') { %>
+          <form action="/user/edit" method="post" enctype="multipart/form-data">
+              <div class="navbar-nav ms-auto">
+                <div class="nav-item">
+                  <img src="<%= user.profile %>" alt="User Profile Picture" class="<% if (user.profile == '/asset/def_profile.png') { %>
+                    profile-pic-def
+                    <% } else { %>
+                    profile-pic
+                    <% } %>">
+                  <input type="file"  id="attachment" name="attachment" class="upload-pic" onchange="this.form.submit()">
+                </div>
+              </div>
+          </form>
+        <% } %>
       </div>
-    </nav>
+    </div>
+  </nav>
 </div>

@@ -11,7 +11,14 @@ router.post('/add-new', (req, res, next) => {
         next();
     });
 },handleNewblog);
-router.post('/edit-post/:id',upload.single('attachment'),handleUpdateById)
+router.post('/edit-post/:id',(req, res, next) => {
+    upload.single('attachment')(req, res, (err) => {
+        if (err) {
+            req.fileUploadError = err.message;
+        }
+        next();
+    });
+},handleUpdateById)
 router.delete('/delete-post/:id',handleDeletebyId);
 
 router.post('/comment/:id',handleNewComment);

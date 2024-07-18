@@ -29,7 +29,7 @@
               </div>
               <form action="/blog/comment/<%= blog._id %>" method="post">
                 <div class="comment-box">
-                    <img src="<%= blog.createdBy.profile %>" alt="User Profile Picture" class="profile-pic">
+                    <img src="<%= user.profile %>" alt="User Profile Picture" class="profile-pic">
                     <input type="text" placeholder="Write a comment..." name="content" spellcheck="true">
                     <div class="comment-box-buttons">
                       <button class="publish-button">
@@ -54,7 +54,7 @@
               </form>
               <% if (comments.length > 0) { %>
                 <% comments.forEach(comment => { %>
-                  <% if (comment.parent) { %>
+                    <% if (comment.parent) { %>
                         <div class="comment">
                           <img src="<%= comment.author.profile %>" alt="<%= comment.author.fullname %>'s Profile Picture" class="profile-pic">
                           <div class="comment-content">
@@ -90,16 +90,20 @@
                             </form>
                           </div>
                         </div>
-                  <% } %>
+                    <% } %>
                     <% if (comment.replies.length > 0) { %>
-                      <% comment.replies.forEach(reply => { %>
-                        
+                      <% comment.replies.forEach(reply => { %> 
                         <div class="reply-comment">
                           <img src="<%= reply.author.profile %>" alt="<%= reply.author.fullname %>" class="profile-pic">
                           <div class="comment-content">
                             <div class="comment-header">
                               <span class="username"><%=reply.name %></span>
                               <span class="time"><%= formatDate(reply.createdAt) %></span>
+                              <% function formatDate(date) { %>
+                                <% const formattedDate = new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: '2-digit' }); %>
+                                <% const formattedTime = new Date(date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }); %>
+                                <%= formattedDate %> at <%= formattedTime %>
+                              <% } %>
                             </div>
                             <div class="comment-text">
                               <span class="replying-to">Replying to <a href="#"><%= comment.name %></a></span>
@@ -119,7 +123,7 @@
                             </div>
                             <form action="/blog/comment/<%= blog._id %>" method="POST" class="reply-form">
                               <textarea name="content" placeholder="Write a reply..." spellcheck="true"></textarea>
-                              <input type="hidden" name="parent" value="<%= comment._id %>">
+                              <input type="hidden" name="parent" value="<%= reply._id %>">
                               <button type="submit">Reply</button>
                             </form>
                           </div>

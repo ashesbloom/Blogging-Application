@@ -7,8 +7,32 @@ body {
     position: relative; /* Ensure relative positioning of the body */
     z-index: 0; /* Ensure z-index is set */
     text-rendering:auto;
-  }
-  
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+.profile-pic-def{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: invert(100%);
+  margin-right: 15px;
+}
+.upload-pic{
+  position: absolute;
+  right: 1.5em;
+  max-width: 40px;
+  max-height: 50px;
+  border-radius: 50%;
+  opacity: 0;
+  margin-right: 15px;
+}
 
 .main-container{
     display:grid;

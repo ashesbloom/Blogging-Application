@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const blogs = require('../models/blogs.js');
 const {escapeHtmlWithMarkers} = require('../service/textParser.js');
-// const users = require('../models/user.js');
+const users = require('../models/user.js');
 const comments = require('../models/comments.js');
 
 router.get('/',async (req,res)=>{
@@ -14,10 +14,11 @@ router.get('/',async (req,res)=>{
         path: userDestination
     })
     const currentUser = req.user
+    const user = await users.findById(currentUser._id);
     if(currentUser.role === 'ADMIN'){}
     
     res.render('home',{
-        user:currentUser,
+        user:user,
         blogs:allblogs,
         path: userDestination
     });
@@ -27,11 +28,10 @@ router.get('/add-new',async(req,res)=>{
     const userDestination = 'addpage'
     if(!req.user) return res.redirect('/signin');
     const currentUser = req.user
-
     if(currentUser.role === 'ADMIN'){}
-    
+    const user = await users.findById(currentUser._id);
     res.render('addBlog',{
-        user:currentUser,
+        user:user,
         path: userDestination,
     });
 })
@@ -42,10 +42,11 @@ router.get('/edit/:id',async(req,res)=>{
     const blog = await blogs.findOne({_id:blogId});
     const userDestination = 'addpage';
     const currentUser = req.user;
+    const user = await users.findById(currentUser._id);
     res.render('editBlog',{
         blog,
         path: userDestination,
-        user:currentUser,
+        user:user,
     });
 })
 router.get('/blog/:id', async (req, res) => {
@@ -58,7 +59,7 @@ router.get('/blog/:id', async (req, res) => {
         }
 
         const filteredBody = escapeHtmlWithMarkers(blog.body);
-        const Allcomments = await comments.find({ blogId }).sort({ createdAt: -1 }).populate('author').populate(
+        const Allcomments = await comments.find({ blogId }).populate('author').populate(
             { path: 'replies', populate: { path: 'author' } });
 
         if (!req.user) {
@@ -73,12 +74,13 @@ router.get('/blog/:id', async (req, res) => {
 
         const currentUser = req.user;
         const flag = currentUser._id === blog.createdBy._id.toString();
+        const user = await users.findById(currentUser._id);
         res.render('blogView', {
             blog,
             comments: Allcomments,
             body: filteredBody,
             path: userDestination,
-            user: currentUser,
+            user: user,
             check: flag
         });
     } catch (error) {
@@ -93,20 +95,22 @@ router.get('/signup',async (req,res)=>{
         user:false,
         path:userDestination
     })
+    const user = await users.findById(req.user._id);
     res.render('signup',{
-        user:req.user,
+        user:user,
         registred:'You are already logged in!',
         path:userDestination
     });
 })
 router.get('/signin',async (req,res)=>{
-    const userDestination = 'signup';
+    const userDestination = 'signin';
     if(!req.user) return res.render('signin',{
         user:false,
         path:userDestination
     })
+    const user = await users.findById(req.user._id);
     res.render('signin',{
-        user:req.user,
+        user:user,
         registred:'You are already logged in!',
         path:userDestination
     });
