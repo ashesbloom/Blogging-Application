@@ -212,25 +212,42 @@ body.modal-active{
 
 .comments-section.dark-mode .profile-pic{
   border-color: #4b4b4b;
+  color: #e0e0e0;
 }
 .comments-section.dark-mode .comment-box{
   border-bottom:1px solid #4b4b4b;
+  color: #e0e0e0;
 }
 .comments-section.dark-mode .comment-box input{
   border:1px solid #4b4b4b;
   background-color: #4b4b4b;
+  color: #e0e0e0;
 }
 .comments-section.dark-mode .comment-box input:focus {
   outline: none;
   border-color: #ffffff;
+  color: #e0e0e0;
 }
 
 
 .comments-section.dark-mode .comment-box-buttons{
   filter: invert(100%);
+  color: #e0e0e0;
 }
 
 .comments-section.dark-mode .reply-comment{
   background-color: #4b4b4b;
   border-left: 1px solid #a5a5a5;
+  color: #e0e0e0;
+}
+
+.reply-form.dark-mode textarea{
+  background-color: #3f3f3f;
+  color: #e0e0e0;
+}
+
+.reply-form.dark-mode{
+  border-color: #4b4b4b;
+  background-color: #393939;
+  color: #e0e0e0;
 }

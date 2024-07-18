@@ -60,6 +60,7 @@ router.get('/blog/:id', async (req, res) => {
         const filteredBody = escapeHtmlWithMarkers(blog.body);
         const Allcomments = await comments.find({ blogId }).sort({ createdAt: -1 }).populate('author').populate(
             { path: 'replies', populate: { path: 'author' } });
+
         if (!req.user) {
             return res.render('blogView', {
                 user: false,

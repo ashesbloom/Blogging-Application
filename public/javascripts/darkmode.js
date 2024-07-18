@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const topBtn = document.querySelectorAll('.add-btn');
     const progressBar = document.querySelectorAll('.progress-loader');
     const comments = document.querySelectorAll('.comments-section');
+    const replyForm = document.querySelectorAll('.reply-form');
     
     
     const applyDarkMode = () => {
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         topBtn.forEach(link => link.classList.add('dark-mode'));
         progressBar.forEach(link => link.classList.add('dark-mode'));
         comments.forEach(link => link.classList.add('dark-mode'));
+        replyForm.forEach(link => link.classList.add('dark-mode'));
     };
 
     const removeDarkMode = () => {
@@ -39,6 +41,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         topBtn.forEach(link => link.classList.remove('dark-mode'));
         progressBar.forEach(link => link.classList.remove('dark-mode'));
         comments.forEach(link => link.classList.remove('dark-mode'));
+        replyForm.forEach(link => link.classList.remove('dark-mode'));
     };
 
     if (localStorage.getItem('dark-mode') === 'enabled') {

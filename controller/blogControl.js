@@ -54,10 +54,15 @@ async function handleUpdateById(req, res) {
     const blogID = req.params.id;
     if (!blogID) return res.status(404).send('Post not found!');
 
+    const blogPost = await blogs.findById(blogID);
+    if (!blogPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+    }
+
     const { title, body } = req.body;
 
     if (!title) return res.status(400).json({ error: 'Missing required field: title' });
-    if (!body) return res.status(400).json({ error: 'Missing required field: body' });
+    if (!body) return res.status(400).json({ error: 'Missing required field: content' });
 
     const readingTime = calculateReadingTime(body);
 
@@ -66,6 +71,18 @@ async function handleUpdateById(req, res) {
 
         if (req.file) {
             const fileName = req.file.filename;
+            const attachmentFilePath = path.resolve(__dirname, '..', 'public', blogPost.attachment);
+            fs.access(attachmentFilePath, fs.constants.F_OK, (err) => {
+                if (err) {
+                    console.error('Attachment file does not exist:', attachmentFilePath);
+                } else {
+                    fs.unlink(attachmentFilePath, (err) => {
+                        if (err) {
+                            console.error('Error deleting attachment file:', err);
+                        }
+                    });
+                }
+            });
             updateFields.attachment = `uploads/${req.user._id}/${fileName}`;
         }
 
