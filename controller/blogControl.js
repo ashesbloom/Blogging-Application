@@ -144,9 +144,10 @@ async function handleDeletebyId(req, res) {
 }
 
 async function handleNewComment(req,res){
+    const currentUser = req.user;
+    if(!currentUser) return res.redirect('/signin');
     try {
         const postId = req.params.id;
-        const currentUser = req.user;
         const {content , parent} = req.body;
         if (parent) {
             const newComment = new comments({

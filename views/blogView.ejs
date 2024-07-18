@@ -29,27 +29,32 @@
               </div>
               <form action="/blog/comment/<%= blog._id %>" method="post">
                 <div class="comment-box">
-                    <img src="<%= user.profile %>" alt="User Profile Picture" class="profile-pic">
-                    <input type="text" placeholder="Write a comment..." name="content" spellcheck="true">
-                    <div class="comment-box-buttons">
-                      <button class="publish-button">
-                        <p>Publish</p>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-6 w-6"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="4"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
+                    <% if (locals.user) { %>
+                      <img src="<%= user.profile %>" alt="User Profile Picture" class="profile-pic">
+                      <input type="text" placeholder="Write a comment..." name="content" spellcheck="true">
+                      <div class="comment-box-buttons">
+                        <button class="publish-button">
+                          <p>Publish</p>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="4"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            ></path>
+                          </svg>
+                        </button>
+                      </div>
+                    <% } else { %>
+                        <p style="margin: 20px auto; font-size: 1.2em; text-align: center;">Please 
+                          <a href="#" class="btn-shine" onclick="window.location.href='/signin'">Sign in</a> to comment!</p>
+                    <% } %>
                 </div>
               </form>
               <% if (comments.length > 0) { %>
@@ -72,16 +77,18 @@
                               </div>
                               <div class="comment-footer">
                                   <div class="comment-actions">
-                                    <span style='margin: 2.2px 0 0 3px;' ><label class="ui-like">
-                                      <input type="checkbox">
-                                      <div class="like" onclick="commentAction('/blog/comment/<%= blog._id %>/action/<%= comment._id %>')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier" ></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
-                                        </div>
-                                      </label>
-                                    </span>
+                                    <% if (locals.user) { %>
+                                      <span style='margin: 2.2px 0 0 3px;' ><label class="ui-like">
+                                        <input type="checkbox">
+                                        <div class="like" onclick="commentAction('/blog/comment/<%= blog._id %>/action/<%= comment._id %>')">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier" ></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                          </div>
+                                        </label>
+                                      </span>
+                                    <% } %>
                                     <span><%= comment.likes.length %> Likes</span>
                                   </div>
-                                  <span class="reply" onclick="showReplyBox(this)">Reply 📬</span>
+                                  <span class="reply" onclick="showReplyBox(this)" style="color:cadetblue;">Reply 📬</span>
                               </div>
                               <form action="/blog/comment/<%= blog._id %>" method="POST" class="reply-form">
                                 <textarea placeholder="Write a reply..." name="content" spellcheck="true"></textarea>
@@ -106,20 +113,23 @@
                               <% } %>
                             </div>
                             <div class="comment-text">
-                              <span class="replying-to">Replying to <a href="#"><%= comment.name %></a></span>
+                              <span class="replying-to">Replying to <a href="#" style="color: cornflowerblue;"><%= comment.name %></a></span>
                                   <%= reply.content %>
                             </div>
                             <div class="comment-footer">
                               <div class="comment-actions">
-                                <span style='margin: 2.2px 0 0 3px;'><label class="ui-like">
-                                  <input type="checkbox">
-                                  <div class="like" onclick="commentAction('/blog/comment/<%= blog._id %>/action/<%= reply._id %>')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
-                                    </div>
-                                  </label></span>
+                                <% if (locals.user) { %>
+                                  <span style='margin: 2.2px 0 0 3px;'><label class="ui-like">
+                                    <input type="checkbox">
+                                    <div class="like" onclick="commentAction('/blog/comment/<%= blog._id %>/action/<%= reply._id %>')">
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                      </div>
+                                    </label>
+                                  </span>
+                                <% } %>
                                 <span><%=reply.likes.length%> Likes</span>
                               </div>
-                              <span class="reply" herf="#" onclick="showReplyBox(this)">Reply 📬</span>
+                              <span class="reply" herf="#" onclick="showReplyBox(this)" style="color:cadetblue;">Reply 📬</span>
                             </div>
                             <form action="/blog/comment/<%= blog._id %>" method="POST" class="reply-form">
                               <textarea name="content" placeholder="Write a reply..." spellcheck="true"></textarea>
