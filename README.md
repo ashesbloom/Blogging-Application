@@ -37,7 +37,7 @@ To set up the project locally, follow these steps:
 
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/ashesbloom/Blogging-Application/
+   git clone https://github.com/ashesbloom/Blogging-Application.git
    cd Blogging-Application
    ```
    
