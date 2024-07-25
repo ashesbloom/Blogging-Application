@@ -37,8 +37,8 @@ To set up the project locally, follow these steps:
 
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/ashesbloom/Blogging-Application/
+   cd Blogging-Application
    ```
    
 2. **Initialize Node.js**
