@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {upload} = require('../service/blogHandling.js');
-const {handleNewblog, handleUpdateById, handleDeletebyId, handleNewComment, handleNewReply, handleCommentAction,} = require('../controller/blogControl.js');
+const {handleNewblog, handleUpdateById, handleDeletebyId, handleNewComment, handleCommentAction,} = require('../controller/blogControl.js');
 
 router.post('/add-new', (req, res, next) => {
     upload.single('attachment')(req, res, (err) => {

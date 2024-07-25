@@ -70,33 +70,32 @@ async function handleUpdateById(req, res) {
     if (!body) return res.status(400).json({ error: 'Missing required field: content' });
 
     const readingTime = calculateReadingTime(body);
-
     try {
         let updateFields = { title, body, readingTime };
-
-        if (req.file) {
-            const fileName = req.file.filename;
+        if (blogPost.attachment) {
             const attachmentFilePath = path.resolve(__dirname, '..', 'public', blogPost.attachment);
             fs.access(attachmentFilePath, fs.constants.F_OK, (err) => {
                 if (err) {
                     console.error('Attachment file does not exist:', attachmentFilePath);
                 } else {
                     fs.unlink(attachmentFilePath, (err) => {
-                        if (err) {
+                        if (err) { 
                             console.error('Error deleting attachment file:', err);
                         }
                     });
                 }
             });
+        }
+        if(req.file){
+            const fileName = req.file.filename;
             updateFields.attachment = `uploads/${req.user._id}/${fileName}`;
         }
-
         const updatedPost = await blogs.findByIdAndUpdate(blogID, updateFields, { new: true });
 
         if (!updatedPost) {
             return res.status(400).json({ error: 'Failed to update post' });
         }
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // await new Promise(resolve => setTimeout(resolve, 1000));
         return res.redirect(`/blog/${updatedPost._id}`);
     } catch (error) {
         console.error(error);
