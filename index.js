@@ -12,7 +12,7 @@ const staticRoute = require('./routes/staticRoute.js');
 const userRoute = require('./routes/userRoute.js');
 const blogRoute = require('./routes/blogRoute.js');
 
-connectdb('mongodb://localhost:27017/blogs_db').catch(console.error).then(console.log('Connected to database'));
+connectdb('your_db_url').catch(console.error).then(console.log('Connected to database'));
 
 app.set('view engine', 'ejs');
 app.set('views',path.resolve('./views'));
