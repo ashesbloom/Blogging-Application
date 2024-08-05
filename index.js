@@ -23,6 +23,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(authenticatCookie('token'))
 
+
 app.use('/',staticRoute);
 app.use('/user',userRoute);
 app.use('/blog',blogRoute);
